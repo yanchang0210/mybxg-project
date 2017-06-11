@@ -28,12 +28,13 @@ define(["jquery","template","cookie"], function($,template) {
     }
 
     //获取用户登录的cookie     
-    var loginInfo=$.cookie("loginInfo") && JSON.parse($.cookie("loginInfo"));
-    if (loginInfo) {
-        var loginTpl = "<div class="avatar img - circle "><img src = "{{loginInfo.tc_avatar }}" > < /div><h4>"{{loginInfo.tc_name}}"</h4 > ";
-        var html=template.render(loginTpl,loginInfo);
-        $("#loginInfoTpl").html(html);
-        // $('.aside .profile').find('img').attr('src', loginInfo.tc_avatar);
+    var loginInfo=$.cookie('loginInfo') && JSON.parse($.cookie('loginInfo'));
+    if(loginInfo){
+        var loginTpl = '<div class="avatar img-circle"><img src="{{tc_avatar}}"></div><h4>{{tc_name}}</h4>';
+        var html = template.render(loginTpl,loginInfo);
+        $('#loginInfoTpl').html(html);
+        // 渲染页面
+        // $('.aside .profile').find('img').attr('src',loginInfo.tc_avatar);
         // $('.aside .profile').find('h4').text(loginInfo.tc_name);
     }
 
