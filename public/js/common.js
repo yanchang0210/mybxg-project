@@ -3,7 +3,7 @@
 // NProgress.done();
 
 
-define(["jquery","cookie"], function($) {
+define(["jquery","template","cookie"], function($,template) {
     // 控制左侧菜单的展开和折叠
 
     $('.navs ul').prev('a').on('click', function() {
@@ -21,17 +21,22 @@ define(["jquery","cookie"], function($) {
         })
     });
     //  判断用户输入的地址，如果未登录过，需要跳转到login页面
-    var pathname=location.pathname;
+    var pathname = location.pathname;
     //判断用户是否已经登录，并且输入的网址不是login
-    if(pathname != "/login" && !$.cookie("PHPSESSID")) {
-        location.href="/login";
+    if (pathname != "/login" && !$.cookie("PHPSESSID")) {
+        location.href = "/login";
     }
 
-    //获取用户登录的cookie
+    //获取用户登录的cookie     
     var loginInfo=$.cookie("loginInfo") && JSON.parse($.cookie("loginInfo"));
-    if(loginInfo) {
-        $('.aside .profile').find('img').attr('src',loginInfo.tc_avatar);
-        $('.aside .profile').find('h4').text(loginInfo.tc_name);
+    if (loginInfo) {
+        var loginTpl = "<div class="avatar img - circle "><img src = "{{loginInfo.tc_avatar }}" > < /div><h4>"{{loginInfo.tc_name}}"</h4 > ";
+        var html=template.render(loginTpl,loginInfo);
+        $("#loginInfoTpl").html(html);
+        // $('.aside .profile').find('img').attr('src', loginInfo.tc_avatar);
+        // $('.aside .profile').find('h4').text(loginInfo.tc_name);
     }
+
+
 
 })
