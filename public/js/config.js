@@ -7,7 +7,10 @@ requirejs.config({
         common: "../js/common",
         login: "../js/login",
         template: "artTemplate/template-web",
-        tealist: "../js/teacher-list"
+        nprogress: "nprogress/nprogress",
+        tealist: "../js/teacher-list",
+        index: "../js/index",
+        util: "../js/util"
     },
     shim: {
         bootstrap: {
@@ -15,3 +18,5 @@ requirejs.config({
         }
     }
 });
+
+

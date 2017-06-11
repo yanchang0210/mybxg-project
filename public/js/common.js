@@ -3,7 +3,7 @@
 // NProgress.done();
 
 
-define(["jquery","template","cookie"], function($,template) {
+define(["jquery","template","nprogress","cookie"], function($,template,nprogress) {
     // 控制左侧菜单的展开和折叠
 
     $('.navs ul').prev('a').on('click', function() {
@@ -38,6 +38,16 @@ define(["jquery","template","cookie"], function($,template) {
         // $('.aside .profile').find('h4').text(loginInfo.tc_name);
     }
 
+    // 控制遮挡层
+    $(document).ajaxStart(function() {
+        $(".overlay").show();
+    });
+    $(document).ajaxStop(function() {
+        $(".overlay").hide();
+    })
 
+    // 进度条控制
+    nprogress.start();
+    nprogress.done();
 
 })
